@@ -22,3 +22,12 @@ window.onresize = function(){
 		}
 	}
 }
+
+window.onload = function(){
+		if(window.innerWidth <= 550){
+		var cpanel = document.getElementsByClassName("cpanel")[0];
+		if(cpanel.className === "cpanel"){
+			cpanel.className = "cpanel offScreen"
+		}
+	}
+}
