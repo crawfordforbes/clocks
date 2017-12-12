@@ -10,7 +10,11 @@ addClock.addEventListener("click", function(){
 var removeClocks = document.getElementById("removeClocks")
 removeClocks.addEventListener("click", function(){
 	var wall = document.getElementById("wall")
+	clocks.forEach(function(clock){
+		clock.reset()
+	})
 	wall.innerHTML = ""
+
 	clocks = []
 	clockmaker()
 })

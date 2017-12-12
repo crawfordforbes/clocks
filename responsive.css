@@ -20,3 +20,12 @@
 		height: 250px
 	}
 }
+
+@media (max-width: 373px){
+	body {
+		margin-top: 360px;
+	}
+	.cpanel {
+		height: 340px
+	}
+}
