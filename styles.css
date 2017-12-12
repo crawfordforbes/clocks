@@ -43,8 +43,10 @@ button {
 	height: 50px;
 }
 
-.cpanel button:hover {
+@media(hover: hover){
+	.cpanel button:hover {
 	background-color: lightgreen;
+}
 }
 
 
