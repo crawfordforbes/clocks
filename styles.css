@@ -100,14 +100,16 @@ button {
 #wall {
 	text-align: center;
 	max-width: 1080px;
-	min-width: 350px;
+	// min-width: 350px;
 	margin: auto;
 	margin-bottom: 20px;
 }
 
 .shelf {
 	display: inline-block;
-  width: 330px;
+	margin: auto;
+  width: 90%;
+  max-width: 330px;
   height: 165px;
   padding: 45px 0;
   background-color: white;
