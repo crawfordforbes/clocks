@@ -18,23 +18,28 @@
 }
 
 
-@media (max-width: 542px){
-	body {
-		margin-top: 220px;
+@media (max-width: 550px){
+		body {
+		margin-top: 35px;
+	}
+	.hamburger{
+		display: block;
+		
 	}
 	.cpanel {
-		height: 170px;
+    width: 150px;
+    height: 360px;
+    top: 70px;
+    left: 0;
+    background-color: rgba(255,255,255,0);
 	}
+
+
 	.cpanel button {
-		font-size: 14px;
+		margin: 10px;
+    width: 120px;
+    
+		font-size: 12px;
 	}
 }
 
-@media (max-width: 390px){
-	body {
-		margin-top: 220px;
-	}
-	.cpanel {
-		height: 240px;
-	}
-}
