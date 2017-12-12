@@ -11,6 +11,12 @@
 	}
 }
 
+@media (max-width: 750px){
+	footer{
+		height: 60px;
+	}
+}
+
 
 @media (max-width: 542px){
 	body {
