@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	
+	<meta charset="UTF-8">
+	
+	<title>Clock building excercise by Crawford Forbes</title>
+	
+	<link href="https://fonts.googleapis.com/css?family=Orbitron:400,700" rel="stylesheet">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style>
+/* simple css reset */
+* {
+	color: #404040;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+}
+
+
+/* site wide styles */
+body {
+	/* make room for top fixed div */
+	margin-top: 60px;
+}
+
+button {
+	cursor: pointer;
+}
+
+/* hamburger menu */
+.hamburger {
+	display: none;
+	width: 60px;
+	height: 60px;
+	position: fixed;
+	top: 15px;
+	left: 15px;
+	z-index: 1;
+}
+
+.hamburger div {
+	width: 50px;
+	height: 10px;
+	margin-bottom: 5px;
+	border-radius: 20px;
+	
+	background-color: #5f5f5f;
+}
+
+
+
+.showingMenu{
+	margin-top: 220px;
+}
+.hidingMenu {
+	margin-top: 20px;
+}
+/* top fixed element */
+.cpanelWrapper{
+	width: 100%;
+	position: fixed;
+	top: 0;
+}
+
+.cpanel {
+  position: fixed;
+  top: 0;
+  left: 5px;
+  background-color: rgba(255,255,255,.8);
+  height: 60px;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  -webkit-transition: left 0.3s ease-out;
+	-moz-transition: left 0.3s ease-out;
+	-ms-transition: left 0.3s ease-out;
+	-o-transition: left 0.3s ease-out;
+	transition: left 0.3s ease-out;
+}
+
+.cpanel button {
+	margin: -3px 10px;
+	padding: 10px;
+	border: 2px solid #5f5f5f;
+	border-radius: 3px;
+	height: 50px;
+	background-color: white;
+}	
+
+@media(hover: hover){
+	.cpanel button:hover {
+	background-color: lightgreen;
+}
+}
+
+/* move the cpanel offscreen */
+.offScreen {
+	left: -200px !important;
+	-webkit-transition: left 0.3s ease-out;
+	-moz-transition: left 0.3s ease-out;
+	-ms-transition: left 0.3s ease-out;
+	-o-transition: left 0.3s ease-out;
+	transition: left 0.3s ease-out;
+}
+
+
+
+
+/* clock storage */
+#wall {
+	text-align: center;
+	max-width: 1080px;
+	// min-width: 350px;
+	margin: auto;
+	margin-bottom: 20px;
+}
+
+.shelf {
+	display: inline-block;
+	margin: auto;
+  width: 90%;
+  max-width: 330px;
+  height: 165px;
+  padding: 45px 0;
+  background-color: white;
+}
+
+
+/* individual clocks */
+.clockWrapper {
+	width: 270px;
+	height: 145px;
+	margin: auto;
+	background-color: #5f5f5f;
+	border-radius: 40px;
+}
+
+.buttonsWrapper {
+	margin-bottom: 20px;
+	text-align: left;
+}
+
+.buttons {
+	display: inline-block;
+	border: 1px solid #404040;
+	width: 120px;
+	height: 40px;
+	padding-top: 2px;
+	font-weight: bold;
+}
+
+.startButton {
+	border-top-left-radius: 40px;
+  text-align: right;
+  padding-right: 10px;
+  border-bottom-right-radius: 10px;
+  border: 2px solid green;
+  background-color: lightgreen;
+}
+
+.resetButton {
+	border-top-right-radius: 40px;
+  text-align: left;
+  padding-left: 10px;
+  float: right;
+  border-bottom-left-radius: 10px;
+  border: 2px solid blue;
+  background-color: lightblue;
+}
+
+.displayWrapper {
+	width: 150px;
+	height: 15px;
+	margin: auto;
+	background-color: #BBBABD;
+  padding: 15px 0;
+  border-radius: 3px;
+}
+
+.display {
+  width: 130px;
+  margin: auto;
+  text-align: left;
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* colophon */
+footer {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	background-color: white;
+	height: 20px;
+	padding: 15px;
+	border-top-left-radius: 3px;
+}
+footer p, footer a {
+	font-size: 14px;
+}
+
+/* responsive rules */
+
+
+/* make room for top fixed element */
+@media (max-width: 890px){
+	.cpanel button {
+		margin: 15px;
+	}
+	body {
+		margin-top: 140px;
+	}
+	.cpanel {
+		height: 170px;
+	}
+}
+
+@media (max-width: 750px){
+	footer{
+		height: 50px;
+	}
+}
+
+
+@media (max-width: 550px){
+		body {
+		margin-top: 35px;
+	}
+	.hamburger{
+		display: block;
+		
+	}
+	.cpanel {
+    width: 150px;
+    height: 360px;
+    top: 70px;
+    left: 0;
+    background-color: rgba(255,255,255,0);
+	}
+
+
+	.cpanel button {
+		margin: 10px;
+    width: 120px;
+    
+		font-size: 12px;
+	}
+}
+
+
+</style>
+<body>
+
+	<div class="hamburger">
+		<div></div>
+		<div></div>
+		<div></div>
+	</div>
+
+	<div class="cpanel">
+		<button id="addClock">Add a clock</button>
+		<button id="removeClocks" class="conditional">Remove clocks</button>
+		<button id="startAll" class="conditional">Start all clocks</button>
+		<button id="pauseAll" class="conditional">Pause all clocks</button>
+		<button id="resetAll" class="conditional">Reset all clocks</button>
+	</div>
+
+	<div id="wall">
+	</div>
+
+	<footer>
+		<p>Made by <a href="mailto:crawford.forbes@gmail.com">Crawford Forbes</a>. View the code on github at <a href="https://github.com/crawfordforbes/clocks">https://github.com/crawfordforbes/clocks</a>
+		</p>
+	</footer>
+
+</body>
+
+<script type="text/javascript">
+	// createCLockHTML takes a clock object and creates its html, adds click events, and appends it to the DOM
+
+var createClockHTML = function(clock){
+
+
+	// get the clock's id
+	var id = clock.id;
+
+
+	// clock storage
+	var wall = document.getElementById("wall")
+
+	var shelf = document.createElement("div");
+	shelf.className = "shelf";
+
+
+	// clock outer shell
+	var clockWrapper = document.createElement("div");
+	clockWrapper.className = "clockWrapper";
+	clockWrapper.id = "clock_"+id;
+	
+
+	// row of buttons
+	var buttonsWrapper = document.createElement("div");
+	buttonsWrapper.className = "buttonsWrapper";
+
+	var start = document.createElement("button");
+	start.className = "buttons startButton";
+	start.id = "start_"+id;
+	start.innerText = "START"
+	start.addEventListener("click", clock.start)
+
+	var reset = document.createElement("button");
+	reset.className = "buttons resetButton";
+	reset.id = "reset_"+id;
+	reset.innerText = "RESET"
+	reset.addEventListener("click", clock.reset)
+
+
+	//lcd display
+	var displayWrapper = document.createElement("div")
+	displayWrapper.className = "displayWrapper"
+
+	var display = document.createElement("p");
+	display.className = "display"
+
+	var hours = document.createElement("span")
+	hours.className = "display hours";
+	hours.id = "hours_"+id;
+	hours.innerText = "00"
+
+	var minutes = document.createElement("span")
+	minutes.className = "display minutes";
+	minutes.id = "minutes_"+id;
+	minutes.innerText = "00"
+
+	var seconds = document.createElement("span")
+	seconds.className = "display seconds";
+	seconds.id = "seconds_"+id;
+	seconds.innerText = "00"
+
+	var milliseconds = document.createElement("span")
+	milliseconds.className = "display milliseconds";
+	milliseconds.id = "milliseconds_"+id;
+	milliseconds.innerText = "0"
+
+	var colonH = document.createElement("span")
+	colonH.className = "colon"
+	colonH.innerText = ":"
+
+	var colonM = document.createElement("span")
+	colonM.className = "colon"
+	colonM.innerText = ":"
+
+	var colonS = document.createElement("span")
+	colonS.className = "colon"
+	colonS.innerText = "."
+
+
+	// put created elements together and append them to the page
+	buttonsWrapper.appendChild(start)
+	buttonsWrapper.appendChild(reset)
+
+	display.appendChild(hours)
+	display.appendChild(colonH)
+	display.appendChild(minutes)
+	display.appendChild(colonM)
+	display.appendChild(seconds)
+	display.appendChild(colonS)
+	display.appendChild(milliseconds)
+
+	displayWrapper.appendChild(display)
+
+	clockWrapper.appendChild(buttonsWrapper)
+	clockWrapper.appendChild(displayWrapper)
+
+	shelf.appendChild(clockWrapper)
+	wall.appendChild(shelf)
+}
+
+
+
+</script>
+<script type="text/javascript">
+	// clock object constructor, it takes a unique id
+var Clock = function(id) {
+	// Attributes
+
+	// a unique id
+	this.id = id;
+
+	// time starts at 0 ms
+	this.time = 0;
+
+	// runningClock is a clock's interval ID
+	this.runningClock = null;
+
+
+	// Methods
+
+	// increment time, append the most recent time to the DOM
+	this.increaseTime = function() {
+		this.time += 100;
+		this.renderTime()
+	};
+
+	// when the start button is clicked, this.start fires. First it checks if it is already running; if so it pauses the clock and makes appropriate style changes, otherwise it starts the clock and makes appropriate style changes.
+	this.start = function(){
+
+		if(this.runningClock > 0){
+			clearInterval(this.runningClock)
+			// reset the interval ID, otherwise the next time start is clicked the clock won't start
+			this.runningClock = null;
+			document.getElementById("start_"+this.id).innerText = "START"
+			document.getElementById("start_"+this.id).style.borderColor = "green"
+			document.getElementById("start_"+this.id).style.backgroundColor = "lightgreen"
+		} else {
+			this.runningClock = setInterval(function(){this.increaseTime()}.bind(this), 100)
+			document.getElementById("start_"+this.id).innerText = "PAUSE"
+			document.getElementById("start_"+this.id).style.borderColor = "firebrick"
+			document.getElementById("start_"+this.id).style.backgroundColor = "red"
+		}
+	}.bind(this)
+	
+	// when the start all button is clicked, this.startAll fires. If this clock is already running, this function is does nothing; otherwise it starts the clock. 
+	this.startAll = function(){
+		if(!this.runningClock){
+		this.runningClock = setInterval(function(){this.increaseTime()}.bind(this), 100)
+			document.getElementById("start_"+this.id).innerText = "PAUSE"
+			document.getElementById("start_"+this.id).style.borderColor = "firebrick"
+			document.getElementById("start_"+this.id).style.backgroundColor = "red"
+		}
+	}
+
+	// pause a running clock, do nothing to a paused or reset clock
+	this.pause = function(){
+
+		if(this.runningClock > 0){
+			clearInterval(this.runningClock)
+			this.runningClock = null;
+			document.getElementById("start_"+this.id).innerText = "START"
+			document.getElementById("start_"+this.id).style.borderColor = "green"
+			document.getElementById("start_"+this.id).style.backgroundColor = "lightgreen"
+		}
+	}
+
+	// pause a running clock, and reset any clock's time to 0, and rerender the new time
+	this.reset = function(){
+		if(this.runningClock > 0){
+			clearInterval(this.runningClock)
+			this.runningClock = null;
+		}
+		this.time = 0;
+		document.getElementById("start_"+this.id).innerText = "START"
+		document.getElementById("start_"+this.id).style.borderColor = "green"
+		document.getElementById("start_"+this.id).style.backgroundColor = "lightgreen"
+		this.renderTime()
+	}.bind(this)
+
+	// rerender the lcd disstart of the clock. Also add a "0" to any piece of time that needs a tens placeholder when that particular value would be less than ten. Compute each piece of time from ms to H/M/S. Only disstart hundredths value for ms.
+	this.renderTime = function(){
+
+		var hoursActual = Math.floor(this.time / 3600000);
+		var hoursDisstart = (hoursActual < 10) ? "0"+hoursActual : hoursActual;
+		document.getElementById('hours_'+this.id).innerText = hoursDisstart;
+
+		var minutesActual = Math.floor(this.time / 60000) % 60
+		var minutesDisstart = (minutesActual < 10) ? "0"+minutesActual : minutesDisstart = minutesActual
+		document.getElementById('minutes_'+this.id).innerText  = minutesDisstart;
+
+		var secondsActual = Math.floor(this.time / 1000) % 60
+		var secondsDisstart = (secondsActual < 10) ? "0"+secondsActual : secondsDisstart = secondsActual;
+		document.getElementById('seconds_'+this.id).innerText = secondsDisstart;
+
+		document.getElementById('milliseconds_'+this.id).innerText = this.time.toString().substr(this.time.toString().length - 3, 1)
+	}
+}
+
+
+// hold clock objects in clocks array
+clocks = [];
+
+// clockmaker chooses a new unique ID, creates a new clock object with that ID, and renders it to the page with createClockHTML
+var clockmaker = function(){
+	
+	if(clocks.length > 0){
+		var clock = new Clock(clocks.length)
+		
+		createClockHTML(clock)
+		clocks.push(clock)
+
+	} else {
+		var clock = new Clock(0)
+		clocks.push(clock)
+		createClockHTML(clock)
+
+	}
+}
+
+// run clockmaker on load
+clockmaker()
+</script>
+<script type="text/javascript">
+	// This file adds event listeners to the buttons in the fixed top element
+
+// add a clock to the page
+var addClock = document.getElementById("addClock")
+addClock.addEventListener("click", function(){
+	clockmaker()
+})
+
+// remove all clocks and create one
+var removeClocks = document.getElementById("removeClocks")
+removeClocks.addEventListener("click", function(){
+	var wall = document.getElementById("wall")
+	clocks.forEach(function(clock){
+		clock.reset()
+	})
+	wall.innerHTML = ""
+
+	clocks = []
+	clockmaker()
+})
+
+// start all clocks on the page
+var startAll = document.getElementById("startAll")
+startAll.addEventListener("click", function(){
+	clocks.forEach(function(clock){
+		clock.startAll()
+	})
+})
+
+// pause all clocks on the page
+var pauseAll = document.getElementById("pauseAll")
+pauseAll.addEventListener("click", function(){
+	clocks.forEach(function(clock){
+		clock.pause()
+	})
+})
+
+// reset all clocks on the page to 0
+var resetAll = document.getElementById("resetAll")
+resetAll.addEventListener("click", function(){
+	clocks.forEach(function(clock){
+		clock.reset()
+	})
+})
+
+
+
+
+
+</script>
+<script type="text/javascript">
+	
+// select the element and add a click event to it
+var hamburger = document.getElementsByClassName("hamburger")[0];
+
+hamburger.addEventListener("click", function(){
+	// select the element to be updated, and change it's class to show or hide the element
+	var cpanel = document.getElementsByClassName("cpanel")[0];
+	if(cpanel.className === "cpanel"){
+		cpanel.className = "cpanel offScreen"
+
+	} else {
+		cpanel.className = "cpanel"
+
+	}
+
+})
+
+// reset cpanel if browser is resized
+window.onresize = function(){
+	if(window.innerWidth > 550){
+		var cpanel = document.getElementsByClassName("cpanel")[0];
+		if(cpanel.className === "cpanel offScreen"){
+			cpanel.className = "cpanel"
+		}
+	}
+}
+
+// assign the correct classes to the cpanel based on screen size when the page loads
+window.onload = function(){
+		if(window.innerWidth <= 550){
+		var cpanel = document.getElementsByClassName("cpanel")[0];
+		if(cpanel.className === "cpanel"){
+			cpanel.className = "cpanel offScreen"
+		}
+	}
+}
+</script>
+	
+</html>
