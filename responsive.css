@@ -23,7 +23,7 @@
 		margin-top: 220px;
 	}
 	.cpanel {
-		height: 250px;
+		height: 170px;
 	}
 	.cpanel button {
 		font-size: 14px;
@@ -32,9 +32,9 @@
 
 @media (max-width: 390px){
 	body {
-		margin-top: 360px;
+		margin-top: 220px;
 	}
 	.cpanel {
-		height: 340px;
+		height: 240px;
 	}
 }
