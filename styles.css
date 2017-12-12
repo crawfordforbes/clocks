@@ -55,6 +55,7 @@ button {
 	max-width: 1080px;
 	min-width: 350px;
 	margin: auto;
+	margin-bottom: 20px;
 }
 
 .shelf {
