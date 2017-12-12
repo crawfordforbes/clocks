@@ -1,0 +1,136 @@
+/* simple css reset */
+* {
+	color: #404040;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+}
+
+
+/* site wide styles */
+body {
+	/* make room for top fixed div */
+	margin-top: 60px;
+}
+
+button {
+	cursor: pointer;
+}
+
+
+/* top fixed element */
+.cpanelWrapper{
+	width: 100%;
+	position: fixed;
+	top: 0;
+}
+
+.cpanel {
+  position: fixed;
+  top: 0;
+  background-color: rgba(255,255,255,.8);
+  height: 60px;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
+
+.cpanel button {
+	margin: -3px 10px;
+	padding: 10px;
+	border: 2px solid #5f5f5f;
+	border-radius: 3px;
+	height: 50px;
+}
+
+.cpanel button:hover {
+	background-color: lightgreen;
+}
+
+
+/* clock storage */
+#wall {
+
+	text-align: center;
+	max-width: 1080px;
+	min-width: 350px;
+	margin: auto;
+}
+
+.shelf {
+	display: inline-block;
+  width: 330px;
+  height: 165px;
+  padding: 45px 0;
+  background-color: white;
+}
+
+
+/* individual clocks */
+.clockWrapper {
+	width: 270px;
+	height: 145px;
+	margin: auto;
+	background-color: #5f5f5f;
+	border-radius: 40px;
+}
+
+.buttonsWrapper {
+	margin-bottom: 20px;
+	text-align: left;
+}
+
+.buttons {
+	display: inline-block;
+	border: 1px solid #404040;
+	width: 120px;
+	height: 40px;
+	padding-top: 2px;
+	font-weight: bold;
+}
+
+.startButton {
+	border-top-left-radius: 40px;
+  text-align: right;
+  padding-right: 10px;
+  border-bottom-right-radius: 10px;
+  border: 2px solid green;
+  background-color: lightgreen;
+}
+
+.resetButton {
+	border-top-right-radius: 40px;
+  text-align: left;
+  padding-left: 10px;
+  float: right;
+  border-bottom-left-radius: 10px;
+  border: 2px solid blue;
+  background-color: lightblue;
+}
+
+.displayWrapper {
+	width: 150px;
+	height: 15px;
+	margin: auto;
+	background-color: #BBBABD;
+  padding: 15px 0;
+  border-radius: 3px;
+}
+
+.display {
+  width: 130px;
+  margin: auto;
+  text-align: left;
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* colophon */
+footer {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	background-color: white;
+	height: 20px;
+	padding: 15px;
+	border-top-left-radius: 3px;
+}

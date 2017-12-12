@@ -1,0 +1,22 @@
+/* make room for top fixed element */
+@media (max-width: 879px){
+	.cpanel button {
+		margin: 15px;
+	}
+	body {
+		margin-top: 140px;
+	}
+	.cpanel {
+		height: 170px
+	}
+}
+
+
+@media (max-width: 542px){
+	body {
+		margin-top: 220px;
+	}
+	.cpanel {
+		height: 250px
+	}
+}
