@@ -1,4 +1,4 @@
-#Clock Excercise
+###Clock Excercise
 
 This is my submission for the clock building code challenge. Each clock has a button that starts or pauses the clock, as well as a reset button that stops the clock and resets time to zero. I also included a control panel that allows you to add a clock, remove all clocks, and start or pause all clocks at once. 
 
