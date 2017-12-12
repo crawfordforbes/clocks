@@ -14,6 +14,8 @@ hamburger.addEventListener("click", function(){
 	}
 
 })
+
+// reset cpanel if browser is resized
 window.onresize = function(){
 	if(window.innerWidth > 550){
 		var cpanel = document.getElementsByClassName("cpanel")[0];
@@ -23,6 +25,7 @@ window.onresize = function(){
 	}
 }
 
+// assign the correct classes to the cpanel based on screen size when the page loads
 window.onload = function(){
 		if(window.innerWidth <= 550){
 		var cpanel = document.getElementsByClassName("cpanel")[0];
